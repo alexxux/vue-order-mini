@@ -13,6 +13,8 @@ export default {
 >
 .shopcart {
   background: green;
+  position: absolute;
+  bottom:0;
   height: 45px;
 }
 
