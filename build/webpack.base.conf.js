@@ -48,7 +48,8 @@ let baseWebpackConfig = {
       'vue': 'mpvue',
       '@': resolve('src'),
       'components': resolve('src/components'),
-      'common': resolve('src/common')
+      'common': resolve('src/common'),
+      'static': resolve('static')
     },
     symlinks: false,
     aliasFields: ['mpvue', 'weapp', 'browser'],

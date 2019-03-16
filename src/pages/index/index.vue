@@ -5,7 +5,6 @@
     <shop-cart></shop-cart>
   </div>
 </template>
-
 <script>
 import orderHeader from 'components/header'
 import orderMenu from 'components/menu'
@@ -18,7 +17,8 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-
+<style
+ lang="scss"
+ scoped
+>
 </style>
