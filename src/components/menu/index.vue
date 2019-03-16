@@ -51,6 +51,7 @@
 <script>
 import cartControl from 'components/cartcontrol'
 import goodsjson from 'static/mock/goods.json'
+import { mapMutations } from 'vuex'
 export default {
   data() {
     return {
@@ -69,19 +70,56 @@ export default {
         })
       })
       return foods
+    },
+    cartSumpaid() {
+      let sumpaid = 0
+      this.goods.forEach((good) => {
+        good.foods.forEach((food) => {
+          if (food.count) {
+            sumpaid += food.price * food.count
+          }
+        })
+      })
+      return sumpaid
+    },
+    cartCount() {
+      let count = 0
+      this.goods.forEach((good) => {
+        good.foods.forEach((food) => {
+          if (food.count) {
+            count += food.count
+          }
+        })
+      })
+      return count
     }
   },
   methods: {
     selectClass(index) {
       this.selectMenu = index
-    }
+    },
+    ...mapMutations([
+      'set_xcartfoods',
+      'set_xcartsumpaid',
+      'set_xcartcount'
+    ])
   },
   created() {
     this.goods = goodsjson.data
-    console.log(this.goods)
   },
   components: {
     cartControl
+  },
+  watch: {
+    cartFoods(newData) {
+      this.$store.commit('set_xcartfoods', newData)
+    },
+    cartSumpaid(newData) {
+      this.$store.commit('set_xcartsumpaid', newData)
+    },
+    cartCount(newData) {
+      this.$store.commit('set_xcartcount', newData)
+    }
   }
 }
 </script>
@@ -165,10 +203,12 @@ export default {
 .activateMenu {
   background: #f2f2f2;
 }
+
 .activateMenuLine {
   border-left: 10px solid black;
   position: absolute;
   width: 80px;
   height: 90px;
 }
+
 </style>
