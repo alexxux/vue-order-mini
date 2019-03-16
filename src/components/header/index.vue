@@ -2,7 +2,7 @@
   <div class="header">
     <div class="title">
       <div class="welcome-user">
-        <span>你好!{{ getXmember.memberName }}</span>
+        <span>你好, {{ getXmember.memberName }}！</span>
       </div>
       <div class="table">{{ tableinfo }}</div>
       <div class="credits-bar">积分{{ getXmember.memberCredits }}</div>

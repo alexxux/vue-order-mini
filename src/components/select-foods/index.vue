@@ -20,6 +20,7 @@
          v-for="(item, index) in getXrecommend"
          :key="index"
          class="recommend-item"
+         :class="{ishot : item.hot===1}"
         >
           <img :src="item.icon" class="item-icon">
           <div class="item-content">

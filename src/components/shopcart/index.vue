@@ -40,8 +40,16 @@ export default {
   },
   methods: {
     cartSubmit() {
-      const url = '../order/main'
-      mpvue.navigateTo({ url })
+      if (this.getXcartcount !== 0) {
+        const url = '../order/main'
+        mpvue.navigateTo({ url })
+      } else {
+        wx.showToast({
+          title: '请选择菜品',
+          icon: 'none',
+          duration: 2000
+        })
+      }
     }
   }
 }
