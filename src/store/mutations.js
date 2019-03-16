@@ -7,6 +7,9 @@ const mutations = {
   },
   set_xcartsumpaid(state, data) {
     state.xcartsumpaid = data
+  },
+  set_xmember(state, data) {
+    state.xmember = data
   }
 }
 

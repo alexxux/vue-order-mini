@@ -27,7 +27,7 @@ export default {
   },
   methods: {
     cartSubmit() {
-      const url = '../logs/main'
+      const url = '../order/main'
       mpvue.navigateTo({ url })
     }
   }
