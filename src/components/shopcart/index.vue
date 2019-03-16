@@ -1,12 +1,15 @@
 <template>
   <div class="shopcart">
     <div class="cart-count">
-      {{ getXcartcount }}份
+      <span v-show="getXcartcount">{{ getXcartcount }}份</span>
     </div>
     <div class="cart-sumpaid">
-      {{ getXcartsumpaid }}元
+      <span v-show="getXcartsumpaid">{{ getXcartsumpaid }}元</span>
     </div>
-    <div class="cart-submit">
+    <div
+     class="cart-submit"
+     @click="cartSubmit"
+    >
       <span>选好了
       </span>
       <i class="iconfont icon-arrow-right"></i>
@@ -21,6 +24,12 @@ export default {
       'getXcartsumpaid',
       'getXcartcount'
     ])
+  },
+  methods: {
+    cartSubmit() {
+      const url = '../logs/main'
+      mpvue.navigateTo({ url })
+    }
   }
 }
 </script>

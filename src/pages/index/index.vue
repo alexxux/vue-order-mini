@@ -21,4 +21,7 @@ export default {
  lang="scss"
  scoped
 >
+.main {
+  overflow: hidden;
+}
 </style>

@@ -5,7 +5,7 @@
         <span>你好!{{ username }}</span>
       </div>
       <div class="table">{{ tableinfo }}</div>
-      <div class="credits-bar">积分：{{ credits }}</div>
+      <div class="credits-bar">积分{{ credits }}</div>
     </div>
     <swiper class="swiper-box">
       <swiper-item v-for="item in swiperList" :key="item.id">
@@ -44,7 +44,7 @@ export default {
     height: 40px;
     background: #050101;
     color: #fff;
-    font-size: 13.5px;
+    font-size: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -55,6 +55,11 @@ export default {
 
     .credits-bar {
       margin-right: 13px;
+      background: #fff;
+      color: black;
+      text-align: center;
+      width: 70px;
+      border-radius: 15px;
     }
   }
 
