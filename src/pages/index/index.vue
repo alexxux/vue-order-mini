@@ -3,7 +3,7 @@
     <order-header></order-header>
     <swiper-bar></swiper-bar>
     <order-menu></order-menu>
-    <shop-cart></shop-cart>
+    <shop-cart mode="preview"></shop-cart>
   </div>
 </template>
 <script>

@@ -9,8 +9,18 @@
     <div
      class="cart-submit"
      @click="cartSubmit"
+     v-if="mode==='preview'"
     >
       <span>选好了
+      </span>
+      <i class="iconfont icon-arrow-right"></i>
+    </div>
+    <div
+     class="cart-submit"
+     @click="cartSubmit"
+     v-if="mode==='pay'"
+    >
+      <span>去支付
       </span>
       <i class="iconfont icon-arrow-right"></i>
     </div>
@@ -19,6 +29,9 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
+  props: {
+    mode: String
+  },
   computed: {
     ...mapGetters([
       'getXcartsumpaid',
