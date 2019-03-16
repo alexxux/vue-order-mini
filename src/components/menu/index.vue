@@ -12,9 +12,11 @@
              :key="index"
              @click="selectClass(index)"
              class="menu-item"
+             :class="{ activateMenu: selectMenu===index }"
             >
               <img :src="item.icon" alt="icon" class="menu-icon">
-              <div>{{ item.name }}</div>
+              <div class="menu-text">{{ item.name }}</div>
+              <i :class="{ activateMenuLine: selectMenu===index }"></i>
             </li>
           </ul>
         </scroll-view>
@@ -24,16 +26,20 @@
         >
           <ul class="menu-list">
             <li
-             v-for="(item, index) in goods[selectMenu].foods"
+             v-for="(food, index) in goods[selectMenu].foods"
              :key="index"
              class="food-item"
             >
               <div class="food-icon-box">
-                <img :src="item.icon" alt="foodicon" class="food-icon">
+                <img :src="food.icon" alt="foodicon" class="food-icon">
               </div>
                 <div class="food-content">
-                  <div class="food-name">{{ item.name }}</div>
-                  <div class="food-price">{{ item.price }}{{ item.currency}}/{{ item.unit }}</div>
+                  <div class="food-name">{{ food.name }}</div>
+                  <div class="food-price">{{ food.price }}{{ food.currency}}/{{ food.unit }}</div>
+                  <cart-control
+                   @add="addFood"
+                   :food="food"
+                  ></cart-control>
                 </div>
             </li>
           </ul>
@@ -43,12 +49,26 @@
   </div>
 </template>
 <script>
+import cartControl from 'components/cartcontrol'
 import goodsjson from 'static/mock/goods.json'
 export default {
   data() {
     return {
       selectMenu: 0,
       goods: []
+    }
+  },
+  computed: {
+    cartFoods() {
+      let foods = []
+      this.goods.forEach((good) => {
+        good.foods.forEach((food) => {
+          if (food.count) {
+            foods.push(food)
+          }
+        })
+      })
+      return foods
     }
   },
   methods: {
@@ -59,6 +79,9 @@ export default {
   created() {
     this.goods = goodsjson.data
     console.log(this.goods)
+  },
+  components: {
+    cartControl
   }
 }
 </script>
@@ -66,13 +89,8 @@ export default {
  lang="scss"
  scoped
 >
-.menu {
-  .s-view {}
-}
-
 .menu-box {
   display: flex;
-  background: red;
 
   .menu-class {
     position: absolute;
@@ -93,6 +111,10 @@ export default {
         width: 38px;
         height: 38px;
       }
+
+      .menu-text {
+        margin-top: 5px;
+      }
     }
   }
 
@@ -102,30 +124,51 @@ export default {
     left: 80px;
     right: 0;
     bottom: 45px;
-    width: 100%;
+    background: #f2f2f2;
+
     .menu-list {
-      background: #f2f2f2;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 100%;
+
       .food-item {
         display: flex;
         width: 275px;
         height: 145px;
-        margin-left:-80px;  // ??
+        margin: 6px 0;
+        margin-left: -80px; // ??
         justify-content: space-between;
         align-items: center;
-        background: #ffffff;
+        background: #fff;
 
         .food-icon {
           width: 122px;
           height: 122px;
+          padding: 10px;
+        }
+
+        .food-content {
+          position: relative;
+          padding-right: 20px;
+          font-size: 18px;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          align-items: flex-end;
         }
       }
     }
   }
 }
 
+.activateMenu {
+  background: #f2f2f2;
+}
+.activateMenuLine {
+  border-left: 10px solid black;
+  position: absolute;
+  width: 80px;
+  height: 90px;
+}
 </style>
