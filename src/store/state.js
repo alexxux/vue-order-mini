@@ -2,7 +2,8 @@ const state = {
   xcartfoods: [],
   xcartsumpaid: 0,
   xcartcount: 0,
-  xmember: {}
+  xmember: {},
+  xrecommend: []
 }
 
 export default state

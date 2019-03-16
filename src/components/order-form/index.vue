@@ -65,6 +65,7 @@ export default {
     align-items: center;
     height: 38px;
     background: #ffffff;
+    margin-top: 9px;
     .people-text {
       margin-left: 20px;
     }

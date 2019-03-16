@@ -10,6 +10,9 @@ const mutations = {
   },
   set_xmember(state, data) {
     state.xmember = data
+  },
+  set_xrecommend(state, data) {
+    state.xrecommend = data
   }
 }
 
