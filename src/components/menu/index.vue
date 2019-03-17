@@ -157,7 +157,7 @@ export default {
   }
 
   .menu-list-sv {
-    position: absolute;
+    position: fixed;
     top: 165px;
     left: 80px;
     right: 0;

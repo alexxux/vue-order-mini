@@ -7,7 +7,7 @@
       <span v-show="getXcartsumpaid">{{ getXcartsumpaid }}元</span>
     </div>
     <div
-     class="cart-submit"
+     class="cart-submit submit"
      @click="cartSubmit"
      v-if="mode==='preview'"
     >
@@ -16,8 +16,8 @@
       <i class="iconfont icon-arrow-right"></i>
     </div>
     <div
-     class="cart-submit"
-     @click="cartSubmit"
+     class="pay-submit submit"
+     @click="paySubmit"
      v-if="mode==='pay'"
     >
       <span>去支付
@@ -50,6 +50,14 @@ export default {
           duration: 2000
         })
       }
+    },
+    paySubmit() {
+      let msg = `订单金额：${this.getXcartsumpaid}元`
+      wx.showToast({
+        title: msg,
+        icon: 'none',
+        duration: 2000
+      })
     }
   }
 }
@@ -77,7 +85,7 @@ export default {
 
   .cart-sumpaid {}
 
-  .cart-submit {
+  .submit {
     width: 110px;
     height: 100%;
     display: flex;
@@ -85,7 +93,6 @@ export default {
     align-items: center;
     background: #dbdbdd;
     color: #050101;
-
   }
 }
 

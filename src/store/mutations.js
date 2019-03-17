@@ -13,6 +13,15 @@ const mutations = {
   },
   set_xrecommend(state, data) {
     state.xrecommend = data
+  },
+  set_xpaytype(state, data) {
+    state.xpaytype = data
+  },
+  set_xpaysum(state, data) {
+    state.xpaysum = data
+  },
+  set_xpeople(state, data) {
+    state.xpeople = data
   }
 }
 
