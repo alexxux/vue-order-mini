@@ -47,10 +47,12 @@
         </div>
       </div>
     </div>
+    <pay-panel></pay-panel>
   </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import payPanel from 'components/pay-panel'
 export default {
   data() {
     return {
@@ -67,6 +69,9 @@ export default {
   },
   created() {
     this.coupon = this.getXmember.memberCoupon
+  },
+  components: {
+    payPanel
   }
 }
 </script>

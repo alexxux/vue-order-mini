@@ -1,5 +1,8 @@
 <template>
-  <div class="order-form">
+  <scroll-view
+   scroll-y
+   class="order-form"
+  >
     <div class="people">
       <div class="people-text">用餐人数</div>
       <div class="people-control">
@@ -16,7 +19,7 @@
       </div>
     </div>
     <select-foods></select-foods>
-  </div>
+  </scroll-view>
 </template>
 <script>
 import selectFoods from 'components/select-foods'
@@ -56,8 +59,9 @@ export default {
   position: absolute;
   top: 40px;
   bottom: 45px;
-  left:0;
-  right:0;
+  left: 0;
+  right: 0;
+
   .people {
     display: flex;
     font-size: 16px;
@@ -66,16 +70,20 @@ export default {
     height: 38px;
     background: #ffffff;
     margin-top: 9px;
+
     .people-text {
       margin-left: 20px;
     }
+
     .people-control {
       display: flex;
       margin-right: 25px;
+
       .people-count {
         margin: 0 8px;
       }
     }
   }
 }
+
 </style>
