@@ -1,51 +1,47 @@
 <template>
   <div class="menu">
-    <div class="s-view">
-      <div class="menu-box">
-        <scroll-view
-         scroll-y
-         class="menu-class"
+    <scroll-view
+     scroll-y
+     class="menu-class"
+    >
+      <ul>
+        <li
+         v-for="(item, index) in goods"
+         :key="index"
+         @click="selectClass(index)"
+         class="menu-item"
+         :class="{ activateMenu: selectMenu===index }"
         >
-          <ul>
-            <li
-             v-for="(item, index) in goods"
-             :key="index"
-             @click="selectClass(index)"
-             class="menu-item"
-             :class="{ activateMenu: selectMenu===index }"
-            >
-              <img :src="item.icon" alt="icon" class="menu-icon">
-              <div class="menu-text">{{ item.name }}</div>
-              <i :class="{ activateMenuLine: selectMenu===index }"></i>
-            </li>
-          </ul>
-        </scroll-view>
-        <scroll-view
-         scroll-y
-         class="menu-list-sv"
+          <img :src="item.icon" alt="icon" class="menu-icon">
+          <div class="menu-text">{{ item.name }}</div>
+          <i :class="{ activateMenuLine: selectMenu===index }"></i>
+        </li>
+      </ul>
+    </scroll-view>
+    <scroll-view
+     scroll-y
+     class="menu-list-sv"
+    >
+      <ul class="menu-list">
+        <li
+         v-for="(food, index) in goods[selectMenu].foods"
+         :key="index"
+         class="food-item"
         >
-          <ul class="menu-list">
-            <li
-             v-for="(food, index) in goods[selectMenu].foods"
-             :key="index"
-             class="food-item"
-            >
-              <div class="food-icon-box">
-                <img :src="food.icon" alt="foodicon" class="food-icon">
-              </div>
-                <div class="food-content">
-                  <div class="food-name">{{ food.name }}</div>
-                  <div class="food-price">{{ food.price }}{{ food.currency}}/{{ food.unit }}</div>
-                  <cart-control
-                   @add="addFood"
-                   :food="food"
-                  ></cart-control>
-                </div>
-            </li>
-          </ul>
-        </scroll-view>
-      </div>
-    </div>
+          <div class="food-icon-box">
+            <img :src="food.icon" alt="foodicon" class="food-icon">
+          </div>
+            <div class="food-content">
+              <div class="food-name">{{ food.name }}</div>
+              <div class="food-price">{{ food.price }}{{ food.currency}}/{{ food.unit }}</div>
+              <cart-control
+               @add="addFood"
+               :food="food"
+              ></cart-control>
+            </div>
+        </li>
+      </ul>
+    </scroll-view>
   </div>
 </template>
 <script>
@@ -127,12 +123,18 @@ export default {
  lang="scss"
  scoped
 >
-.menu-box {
+.menu {
   display: flex;
+  position: absolute;
+  top: 165px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
 
   .menu-class {
     position: absolute;
-    top: 165px;
+    top: 0;
     bottom: 45px;
     width: 80px;
     background: #dbdbdd;
@@ -152,13 +154,14 @@ export default {
 
       .menu-text {
         margin-top: 5px;
+        font-size: 14px;
       }
     }
   }
 
   .menu-list-sv {
-    position: fixed;
-    top: 165px;
+    position: absolute;
+    top: 0;
     left: 80px;
     right: 0;
     bottom: 45px;
